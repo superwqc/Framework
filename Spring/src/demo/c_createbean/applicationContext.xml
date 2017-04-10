@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<!-- 创建bean的3种方式 -->
+	
+	<!-- 方式1 -->
+	<bean id="u" class="demo.c_createbean.User"></bean>
+	
+	<!-- 
+		方式2
+		注意，以下的bean元素中， 如果没有出现factory-method属性的话，则spring容器就会实例化 UserFactory;
+		如果出现了factory-method属性的话,就仅仅是调用UserFactory的静态方法:  UserFactory.getUser(),
+		最终UserFactory.getUser()返回的对象，就会赋值给u2.
+	-->
+	<bean id="u2" class="demo.c_createbean.UserFactory" factory-method="getUser"></bean>
+	
+	
+	<!--
+		方式3
+		注意，UserFactory类中的getUser2是一个普通方法，不能直接通过类名调用。
+		所以必须使用UserFactory的实例才能调用getUser2,所以先实例化了uf,
+		再调用uf对象的getUser2
+		
+	 -->
+	<bean id="uf" class="demo.c_createbean.UserFactory"></bean> 
+	<bean id="u3" factory-bean="uf" factory-method="getUser2"></bean>
+	 
+</beans>

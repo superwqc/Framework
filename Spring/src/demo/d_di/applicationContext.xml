@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<!--
+		DI是依赖注入的意思，与IOC是一回事。
+		但是 IOC侧重于表示由容器实例化一个对象。
+		而DI侧重于由容器给bean的属性注入值。
+		
+		DI的方式有2种:
+		1. 通过setter方法给属性注入值
+		2. 通过构造器给属性注入值
+	 -->
+	<bean id="u" class="demo.d_di.User">
+		<property name="id" value="100" />
+		<property name="name" value="黄药师" />
+	</bean>
+	
+	<bean id="u2" class="demo.d_di.User">
+		<constructor-arg value="1" />
+		<constructor-arg value="郭靖" />
+	</bean>
+	
+	<bean id="u3" class="demo.d_di.User">
+		<constructor-arg value="黄蓉" index="1" />
+		<constructor-arg value="2" index="0" />
+	</bean>
+	
+	<bean id="u4" class="demo.d_di.User">
+		<constructor-arg value="杨康" type="java.lang.String" />
+		<constructor-arg value="3" type="java.lang.Integer" />
+	</bean>
+</beans>
