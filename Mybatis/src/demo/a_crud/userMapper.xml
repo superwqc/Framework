@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	namespace应该唯一，最好的办法就是包名+映射文件名（不带后缀） 
+ -->
+<mapper namespace="demo.a_crud.userMapper">
+	<!-- 通一个映射文件中，id不能重复 -->
+	<insert id="save" parameterType="demo.a_crud.User">
+		insert into user values (null,#{name},#{birthday},#{money})
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete from user where id=#{id}
+	</delete>
+	<update id="update" parameterType="demo.a_crud.User">
+	update user set name=#{name},birthday=#{birthday},money=#{money} where id=#{id}
+	</update>
+	<select id="findOne" parameterType="int" resultType="demo.a_crud.User">
+	select * from user where id=#{id}
+	</select>
+	<select id="findAll" resultType="demo.a_crud.User">
+	select * from user
+	</select>
+</mapper>
