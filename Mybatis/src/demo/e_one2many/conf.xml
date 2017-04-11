@@ -4,21 +4,21 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-	<package name="demo.c_dao"/>
+		<package name="demo.e_one2many" />
 	</typeAliases>
-	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/db" />
+				<property name="url" value="jdbc:mysql://localhost:3306/db?characterEncoding=utf8" />
 				<property name="username" value="root" />
 				<property name="password" value="123" />
 			</dataSource>
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="demo/c_dao/userMapper.xml" />
+		<mapper resource="demo/e_one2many/empMapper.xml"></mapper>
+		<mapper resource="demo/e_one2many/deptMapper.xml"></mapper>
 	</mappers>
 </configuration>

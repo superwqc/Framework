@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="demo.e_one2many.deptMapper">
+	
+	<select id="findOne" parameterType="int" resultMap="rm">
+	
+		select * from emp,dept
+		where dept_id=did
+		and did=#{id}
+	
+	</select>
+	<resultMap type="Dept" id="rm">
+		<id property="did" column="did"></id>
+		<result property="dname" column="dname"></result>
+		<collection property="emps" ofType="Emp">
+			<id property="eid" column="eid"/>
+			<result property="ename" column="ename"/>
+		</collection>
+	</resultMap>
+	</mapper>
+	
+
+
+
+
+
+

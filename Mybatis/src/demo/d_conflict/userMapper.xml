@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="demo.d_conflict.userMapper">
+	<!--
+		mybatis查询时, 会把与属性名相同的列,对号入座地赋值给模型!
+		如果，模型的属性名，与表中的列名不一致，则无法赋值！ 最终导致模型根本没有实例化！
+		
+		解决方法有2种:
+		1. 给表的列起别名
+	<select id="findAll" resultType="User">
+		select 
+			id as id2, name as name2, birthday as birthday2, money as money2
+		 from 
+		 	user
+	</select>
+	
+	<select id="findOne" parameterType="int" resultType="User">
+		select	
+			id as id2, name as name2, birthday as birthday2, money as money2  
+		from 
+			user 
+		where id = #{id}
+	</select>
+		2. 使用resultMap来映射模型的属性和表的列!
+	 -->
+	
+	<select id="findAll" resultMap="rm">
+		select * from user
+	</select>
+	
+	<select id="findOne" resultMap="rm" parameterType="int">
+		select * from user where id = #{id}
+	</select>
+	
+	<resultMap id="rm" type="User">
+		<id property="id2" column="id"></id>
+		<result property="name2" column="name"></result>
+		<result property="birthday2" column="birthday"></result>
+		<result property="money2" column="money"></result>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
