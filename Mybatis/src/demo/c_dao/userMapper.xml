@@ -7,19 +7,19 @@
  -->
 <mapper namespace="demo.c_dao.userMapper">
 	<!-- 通一个映射文件中，id不能重复 -->
-	<insert id="save" parameterType="demo.c_dao.User">
+	<insert id="save" parameterType="User">
 		insert into user values (null,#{name},#{birthday},#{money})
 	</insert>
 	<delete id="delete" parameterType="int">
 		delete from user where id=#{id}
 	</delete>
-	<update id="update" parameterType="demo.c_dao.User">
+	<update id="update" parameterType="User">
 	update user set name=#{name},birthday=#{birthday},money=#{money} where id=#{id}
 	</update>
-	<select id="findOne" parameterType="int" resultType="demo.c_dao.User">
+	<select id="findOne" parameterType="int" resultType="User">
 	select * from user where id=#{id}
 	</select>
-	<select id="findAll" resultType="demo.c_dao.User">
+	<select id="findAll" resultType="User">
 	select * from user
 	</select>
 </mapper>
