@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.h_parameter.userMapper">
+	<select id="find" parameterType="double" resultType="User">
+		<![CDATA[select * from user where money < #{money}]]>
+	</select>
+	
+	<select id="find2" parameterType="UserExample" resultType="User">
+		SELECT * FROM USER
+		WHERE money BETWEEN #{minMoney} AND #{maxMoney}
+	</select>
+</mapper>
+
+
+
+
+
