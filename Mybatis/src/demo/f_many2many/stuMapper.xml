@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.f_many2many.stuMapper">
+	<select id="findOne" parameterType="int" resultMap="rm">
+		SELECT * FROM t_s,teacher,stu
+		WHERE t_s.tid = teacher.tid
+		AND t_s.sid = stu.sid
+		AND t_s.sid = #{sid}
+	</select>
+	
+	<resultMap id="rm" type="Stu">
+		<id property="sid" column="sid"></id>
+		<result property="sname" column="sname"></result>
+		<collection property="teachers" ofType="Teacher">
+			<id property="tid" column="tid"></id>
+			<result property="tname" column="tname"></result>	
+		</collection>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
