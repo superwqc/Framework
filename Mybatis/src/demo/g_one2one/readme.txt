@@ -1,0 +1,25 @@
+CREATE TABLE card
+(
+  cid INT PRIMARY KEY AUTO_INCREMENT,
+  cname VARCHAR(20)
+);
+
+CREATE TABLE person
+(
+  pid INT PRIMARY KEY AUTO_INCREMENT,
+  pname VARCHAR(20),
+  cid INT,
+  FOREIGN KEY(cid) REFERENCES card(cid)
+);
+
+INSERT INTO card VALUES(NULL, '1001');
+INSERT INTO card VALUES(NULL, '1002');
+
+INSERT INTO person VALUES(NULL, '’≈Œﬁº…',2);
+INSERT INTO person VALUES(NULL, '¡Ó∫¸≥Â',1);
+
+
+
+SELECT * FROM card
+SELECT * FROM person
+

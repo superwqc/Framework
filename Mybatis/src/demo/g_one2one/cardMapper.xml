@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.g_one2one.cardMapper">
+	<select id="findOne" parameterType="int" resultMap="rm">
+		SELECT * FROM card c,person p
+		WHERE c.cid = p.cid
+		AND c.cid = #{cid}
+	</select>
+	<resultMap id="rm" type="Card">
+		<id property="cid" column="cid"></id>
+		<result property="cname" column="cname"></result>
+		<association property="person" javaType="Person">
+			<id property="pid" column="pid"></id>
+			<result property="pname" column="pname"></result>
+		</association>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
+
+
+
+
