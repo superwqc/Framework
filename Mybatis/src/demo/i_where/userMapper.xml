@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="demo.i_where.userMapper"> 
+		<select id="find">
+			select *  from user
+		<where>
+			<if test="id!=null">and id=#{id}</if>
+			<if test="minId!=null">and minId=#{minId}</if>
+			<if test="maxId!=null">and maxId=#{maxId}</if>
+			<if test="money!=null">and money=#{money}</if>
+			<if test="minMoney!=null">and minMoney=#{minMoney}</if>
+			<if test="maxMoney!=null">and maxMoney=#{maxMoney}</if>
+			
+		<if test="ids!=null">
+			id in
+			<foreach collection="ids" item="id" open="(" separator="," close=")">
+			#{id}
+			
+			</foreach>
+		
+		</if>
+		
+		</where>
+			
+		</select>
+
+
+
+</mapper>
+
+
+
+
