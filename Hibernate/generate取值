@@ -1,0 +1,32 @@
+<hibernate-mapping package="west.c_hbm">
+	<class name="User" table="user">
+        <id name="id" column="id" type="java.lang.Integer">
+        	<!-- 
+        		generate 用于指定主键生成策略 
+        			1.assigned  必须自己手动指定主键的值，不会自增长
+        			
+              2.increment 自增长    获取当前
+        			
+              3.hilo  (high-low)高地位算法 作用与increment一样 为数据库添加自增长功能
+        			但是过程与算法不一致，
+        			
+        			id    seed    max_lo   规则
+        			1		    1		    3
+        			4	 	    2		    3
+        			8		    3		    3		  (seed-1)*(max_lo+1)
+           		12	    4		    3
+        			16	    5       3				
+        			
+              4.identity  专门用于支持自增长的数据库
+        			
+              5.native 本地    取值为该值时，hibernate会根据底层连接的数据库的不同，会自动识别
+        			
+        	 -->
+        	
+        	<generator class="native" />
+        </id>
+        <property name="name" column="name" type="java.lang.String"></property>
+        <property name="money" column="money" type="java.lang.Double"></property>
+
+    </class>
+</hibernate-mapping>

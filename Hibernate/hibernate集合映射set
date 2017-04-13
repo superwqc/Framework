@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+	    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="west.d_set">
+<!--在这个映射文件中要描述出两张表的信息 以便让hibernate知道如何创建这两张表 -->
+<!-- 
+	第一张表名字User
+	第一张表id name money
+	第二张表 addresses
+	第二张表address user_id
+ -->
+ 	<class name="User" table="user">
+ 		<id name="id" column="id">
+ 			<generator class="native"></generator>
+ 			</id>
+ 		<property name="name" column="name" type="java.lang.String"></property>
+ 		<property name="money" column="money" type="java.lang.Double"></property>
+ 		
+ 		<!-- 只要set出现 绝对是代表另外一张表 -->
+ 		<set name="addresses" table="addresses">
+ 			
+ 			<!-- key出现有两个作用
+ 				1.表示一个列
+ 				2.表示一个外键列
+ 			-->
+ 			<key column="user_id"></key>
+ 			<!-- element type属性不能省略 -->
+ 			<element column="address" type="java.lang.String"></element>
+ 		</set>
+ 	</class>
+</hibernate-mapping>

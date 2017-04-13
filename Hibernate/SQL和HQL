@@ -1,0 +1,6 @@
+sql : structure query language 结构化查询语言    
+hql ：hibernate query language  hibernate查询语言
+
+1.hql和sql十分相似，但并不是完全相同
+2.hql操作的是类和类的属性，sql操作的是表和表中的列。
+3.在某些条件下，hql还可以省略select关键字，SQL不能省略

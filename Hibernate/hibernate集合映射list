@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+	    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="west.e_list">
+		<class name="User" table="user">
+			<id name="id" column="id">
+				<generator class="native"></generator>
+			</id>
+			<property name="name" column="name"></property>
+			<property name="money" column="money"></property>
+			
+			
+			<list name="addressess" table="addresses">
+				<key column="user_id"></key>
+				<!-- 排序 -->
+				<index column="idx"></index>
+				<element column="address" type="java.lang.String"></element>
+			</list>
+		</class>
+</hibernate-mapping>
