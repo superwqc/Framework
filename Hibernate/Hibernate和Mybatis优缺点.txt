@@ -1,0 +1,51 @@
+1、开发上手难度
+hibernate的真正掌握（封装的功能和特性非常多）要比Mybatis来得难。
+在真正产品级应用上要用Hibernate，不仅对开发人员的要求高，hibernate往往还不适合（多表关联查询等）。
+
+2、系统调优调优方案对比
+Hibernate:
+* 制定合理的缓存策略；
+* 尽量使用延迟加载特性；
+* 采用合理的Session管理机制；
+* 使用批量抓取，设定合理的批处理参数（batch_size）;
+* 进行合理的O/R映射设计
+
+Mybatis：
+* MyBatis在Session方面和Hibernate的Session生命周期是一致的，同样需要合理的Session管理机制。MyBatis同样具有二级缓存机制。 
+* MyBatis可以进行详细的SQL优化设计。
+
+3、SQL优化方面
+Hibernate的查询会将表中的所有字段查询出来，这一点会有性能消耗。
+Hibernate也可以自己写SQL来指定需要查询的字段，但这样就破坏了Hibernate开发的简洁性。
+
+Mybatis的SQL是手动编写的，所以可以按需求指定查询的字段。
+
+总的来说，Hibernate使用的是封装好，通用的SQL来应付所有场景，而Mybatis是针对响应的场景设计的SQL。Mybatis的SQL会更灵活、可控性更好、更优化。
+
+4、移植性
+Hibernate与具体数据库的关联只需在XML文件中配置即可，所有的HQL语句与具体使用的数据库无关，移植性很好。
+MyBatis项目中所有的SQL语句都是依赖所用的数据库的，所以不同数据库类型的支持不好。
+
+5、JDBC
+Hibernate是在JDBC上进行了一次封装。
+Mybatis是基于原生的JDBC的。Mybatis有运行速度上的优势。
+
+6、功能、特性丰富程度
+Hibernate提供了诸多功能和特性。要全掌握很难。
+Mybatis 自身功能很有限，但Mybatis支持plugin，可以使用开源的plugin来扩展功能。
+
+7、动态SQL
+Mybatis mapper xml 支持动态SQL
+Hibernate不支持
+
+实际项目关于Hibernate和Mybatis的选型：
+1、数据量：有以下情况最好选用Mybatis
+如果有超过千万级别的表
+如果有单次业务大批量数据提交的需求（百万条及以上的），这个尤其不建议用Hibernate
+如果有单次业务大批量读取需求（百万条及以上的）(注，hibernate多表查询比较费劲，用不好很容易造成性能问题)
+2、表关联复杂度
+如果主要业务表的关联表超过20个（大概值），不建议使用hibernate
+3、人员
+如果开发成员多数不是多年使用hibernate的情况，建议使用mybatis
+4、数据库对于项目的重要程度
+如果项目要求对于数据库可控性好，可深度调优，用mybatis
