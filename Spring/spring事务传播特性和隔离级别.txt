@@ -1,0 +1,20 @@
+1.事务传播特性和隔离级别
+     传播特性:
+	propagation_required 如果没有就创建，如果有就执行
+	propagation_supports 如果有就支持，如果没有就非事务执行
+	propagation_mandatory,如果存在就支持，没有就抛出异常
+	propagation_requires_new 总是开启一个新事务，如果之前存在事务，则将之前的事务挂起
+	propagation_not_supported 总是非事务执行，并挂起任何存在的事务
+	propagation_never 总是非事务执行，如果存在事务，则抛出异常
+	propagation_nested 如果事务存在，则运行在一个嵌套的事务中，如果没有活动事务，则按照transactionDefinition.propagation_required属性执行
+     
+	隔离级别:
+	isolation_default 这是一个PlatfromTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别.
+      另外四个与JDBC的隔离级别相对应
+	isolation_read_uncommitted 这是事务最低的隔离级别，它充许令外一个事务可以看到这个事务未提交的数据。
+      这种隔离级别会产生脏读，不可重复读和幻像读。
+	isolation_read_committed 保证一个事务修改的数据提交后才能被另外一个事务读取。另外一个事务不能读取该事务未提交的数据
+	isolation_repeatable_read  这种事务隔离级别可以防止脏读，不可重复读。但是可能出现幻像读。
+      它除了保证一个事务不能读取另一个事务未提交的数据外，还保证了避免下面的情况产生(不可重复读)。
+	isolation_serializable这是花费最高代价但是最可靠的事务隔离级别。事务被处理为顺序执行。
+      除了防止脏读，不可重复读外，还避免了幻像读。
